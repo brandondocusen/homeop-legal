@@ -95,7 +95,7 @@
 
   <h2>3. Information collected automatically</h2>
   <ul>
-    <li><strong>Anonymous identifier.</strong> HomeOp uses an anonymous device identifier to manage your subscription status. It is not your name, email, or Apple ID, and it is not used to track you across other apps or websites.</li>
+    <li><strong>Anonymous identifier.</strong> HomeOp creates a random identifier stored in your device Keychain and, when iCloud is enabled, synced across your devices via iCloud Key-Value Store. It is used to validate your subscription, keep your vault consistent across devices, and route requests on our proxy. It is not your name, email, or Apple ID, and it is not used to track you across other apps or websites.</li>
     <li><strong>Purchase and subscription data.</strong> When you buy or restore a subscription, Apple and our subscription management provider process the transaction and entitlement information needed to deliver the feature you paid for.</li>
     <li><strong>Basic technical information.</strong> Network requests to our services may include standard information such as device type and app version, used to operate and secure the service.</li>
   </ul>
@@ -106,9 +106,10 @@
   <h2>5. How the assistant and document organization work</h2>
   <p>HomeOp uses artificial intelligence to read, structure, and answer questions about your household information. To make this possible:</p>
   <ul>
-    <li>When you upload a document or send a message to the assistant, the relevant content is transmitted securely to a third-party artificial intelligence provider (xAI) through a secure proxy server operated on our behalf.</li>
+    <li>When you upload a document, the document content and your current vault state are transmitted securely to a third-party artificial intelligence provider (xAI) through a secure proxy server operated on our behalf.</li>
+    <li>When you send a message to the assistant, your message and your current vault state are transmitted the same way.</li>
     <li>This processing is used only to extract, organize, and respond to your information so the app can present it back to you.</li>
-    <li>The proxy server attaches your anonymous identifier to verify your subscription. It does not attach your name or contact details.</li>
+    <li>The proxy server also stores encrypted copies of your vault and documents for cross-device sync, and attaches your anonymous identifier to verify your subscription and keep your data separate from other users. It does not attach your name or contact details.</li>
   </ul>
   <p>Your use of these features is also subject to the AI provider's applicable terms and privacy practices. We do not sell your information, and we do not use it to serve advertising.</p>
 
@@ -124,10 +125,10 @@
   <h2>7. Service providers</h2>
   <p>We rely on a small number of trusted providers to operate HomeOp:</p>
   <ul>
-    <li><strong>Apple</strong> for app distribution, in-app purchases, and optional device backup.</li>
+    <li><strong>Apple</strong> for app distribution, in-app purchases, optional device backup, and syncing your anonymous identifier across devices via iCloud Key-Value Store.</li>
     <li><strong>xAI</strong> for the artificial intelligence that reads and organizes your information.</li>
     <li><strong>RevenueCat</strong> for managing and validating your subscription entitlements.</li>
-    <li><strong>Cloudflare</strong> for the secure proxy that routes assistant requests.</li>
+    <li><strong>Cloudflare</strong> for the secure proxy that routes assistant requests, stores encrypted vault and preference data for cross-device sync (KV), and stores document files for cross-device sync (R2).</li>
   </ul>
   <p>These providers process information only as needed to perform their function and under their own terms.</p>
 
@@ -144,7 +145,9 @@
   <p>We do not sell your personal information. We do not share it with third parties for their own marketing. We share information only with the service providers listed above, when required by law or valid legal process, or to protect the rights, safety, and property of users, the public, or the Developer.</p>
 
   <h2>10. Data retention and deletion</h2>
-  <p>Because your vault is stored on your device, you remain in control of it. You can delete individual items in the app, and you can remove all HomeOp data by deleting the app from your device. Information held by Apple or our subscription provider for billing and entitlement purposes is retained under their respective policies and applicable law.</p>
+  <p>Your vault is stored on your device and mirrored on our servers so it can stay consistent across your devices. You remain in control of your local copy: you can delete individual items in the app, and you can remove all HomeOp data from a device by deleting the app. Changes you make in the app are synced to our servers when possible.</p>
+  <p>Deleting the app removes the local copy on that device but does not automatically remove server-stored copies. Unreferenced document files on our servers may be removed automatically after a grace period. To request deletion of all server-stored data associated with your anonymous identifier, contact us at <a href="mailto:b.docusen@me.com">b.docusen@me.com</a>.</p>
+  <p>Information held by Apple or our subscription provider for billing and entitlement purposes is retained under their respective policies and applicable law.</p>
 
   <h2>11. Security</h2>
   <p>We use reasonable technical and organizational measures to protect your information, including encrypted connections for data in transit. No method of storage or transmission is completely secure, and we cannot guarantee absolute security.</p>
