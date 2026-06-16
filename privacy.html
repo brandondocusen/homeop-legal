@@ -101,7 +101,7 @@
   </ul>
 
   <h2>4. Where your data is stored</h2>
-  <p>Your documents and the information extracted from them are stored locally on your device within the app's private storage. This data may be included in your device backups if you have enabled backups through your Apple account, in which case it is handled under Apple's terms and your device settings. We do not maintain our own copy of your vault on our servers.</p>
+  <p>Your documents and the information extracted from them are stored locally on your device within the app's private storage. This data may be included in your device backups if you have enabled backups through your Apple account, in which case it is handled under Apple's terms and your device settings. Your vault is stored locally on your device and mirrored on our servers (Cloudflare KV for structured vault data and preferences, Cloudflare R2 for document files), keyed to your anonymous identifier. This mirroring lets your vault stay consistent across devices on the same Apple account. We do not use this storage for advertising or to build a marketing profile. Local data may also be included in device backups under Apple’s terms.</p>
 
   <h2>5. How the assistant and document organization work</h2>
   <p>HomeOp uses artificial intelligence to read, structure, and answer questions about your household information. To make this possible:</p>
